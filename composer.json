@@ -1,14 +1,14 @@
 {
-    "name": "cxb1991/dingtalk",
-    "description": "dingtalk  library",
+    "name": "cxb1991/guzzle_https",
+    "description": "http请求封装",
     "type": "library",
     "license": "MIT",
-	"homepage": "https://open.dingtalk.com/",
+    "version": "1.0",
+	"homepage": "",
     "keywords": [
         "php",
-        "hyperf",
-        "hyperf-dingtalk",
-        "dingtalk"
+        "http",
+        "guzzle"
     ],
 	"time":"2024-07-04",
 	"authors":[
@@ -20,20 +20,15 @@
 		}
 	],
 	"require": {
-        "php": ">=8.0",
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.5.8 || ^7.4.5",
         "guzzlehttp/psr7": "^1.9.1 || ^2.4.5",
-        "guzzlehttp/promises": "^1.4.0 || ^2.0",
-        "hyperf/redis": "^3.0",
-        "hyperf/config": "~3.0.0"
+        "guzzlehttp/promises": "^1.4.0 || ^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Cxb\\HyperfDingTalk\\": "src/"
+            "Cxb\\GuzzleHttp\\": "src/"
         }
-    },
-    "suggest": {
-        "ext-redis": "*"
     },
     "minimum-stability": "dev",
     "config": {
