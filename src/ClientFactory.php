@@ -45,6 +45,7 @@ final class ClientFactory
         curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
         curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+        curl_setopt($ch, CURLOPT_ENCODING, ''); // 解决乱码问题
         curl_setopt($ch, CURLOPT_URL, $request->url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->method);
         curl_setopt($ch, CURLOPT_POST, $request->method == 'POST' ? 1 : 0);
