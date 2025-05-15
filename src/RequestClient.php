@@ -14,6 +14,8 @@ final class RequestClient
     public $body;
     public $method;
     public $request_id;
+    public $timeout;
+
     /**
      *
      * Request constructor.
@@ -28,26 +30,27 @@ final class RequestClient
         $this->url = $url;
         $this->body = $body;
         $this->headers = $headers;
-        $this->request_id=$this->hadoopPrimaryKey('R');
+        $this->request_id = $this->hadoopPrimaryKey('R');
+        $this->timeout = 6 * 60;
     }
 
     /**
      *
      * @param string $prefix
      */
-    public function hadoopPrimaryKey($prefix='')
+    public function hadoopPrimaryKey($prefix = '')
     {
-        $epoch=1479533469598;
+        $epoch = 1479533469598;
         $max12bit = 4095;
         $max41bit = 1099511627775;
-        $machineId=mt_rand(1,999);//获取当前进程ID
+        $machineId = mt_rand(1, 999);//获取当前进程ID
         $time = floor(microtime(true) * 1000);
-        $time-=$epoch;
-        $base = decbin($max41bit+ $time);
+        $time -= $epoch;
+        $base = decbin($max41bit + $time);
         $machineid = str_pad(decbin($machineId), 10, "0", STR_PAD_LEFT);
         $random = str_pad(decbin(mt_rand(0, $max12bit)), 12, "0", STR_PAD_LEFT);
-        $base = $base.$machineid.$random;
-        return $prefix.((string)bindec($base));
+        $base = $base . $machineid . $random;
+        return $prefix . ((string)bindec($base));
     }
 
     /**
@@ -76,12 +79,21 @@ final class RequestClient
     }
 
     /**
+     * 增加超时时间
+     * @param int $num
+     */
+    public function setTimeOut(int $num): void
+    {
+        $this->timeout = $num;
+    }
+
+    /**
      * 请求超时时间
      * @return float|int
      */
     public function getTimeOut()
     {
-        return 6 * 60;
+        return $this->timeout;
     }
 
     /**
